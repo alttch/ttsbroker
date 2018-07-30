@@ -1,4 +1,4 @@
-# pyttsbroker
+# ttsbroker
 Simple TTS (Text-To-Speech) broker for Python
 
 License: Apache License 2.0
