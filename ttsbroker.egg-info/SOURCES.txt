@@ -1,0 +1,12 @@
+README.md
+setup.py
+ttsbroker/__init__.py
+ttsbroker/engine.py
+ttsbroker.egg-info/PKG-INFO
+ttsbroker.egg-info/SOURCES.txt
+ttsbroker.egg-info/dependency_links.txt
+ttsbroker.egg-info/requires.txt
+ttsbroker.egg-info/top_level.txt
+ttsbroker/providers/__init__.py
+ttsbroker/providers/gcloud.py
+ttsbroker/providers/polly.py
