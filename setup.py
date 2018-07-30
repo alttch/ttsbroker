@@ -7,17 +7,17 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="ttsbroker",
     version=ttsbroker.engine.__version__,
-    author=ttsbroker.engine.__author__,
+    author='Altertech Group',
     author_email="pr@altertech.com",
     description="Simple TTS (Text-To-Speech) broker for Python",
     long_description=long_description,
-    # long_description_content_type="text/markdown",
+    long_description_content_type='text/markdown',
     url="https://github.com/alttch/ttsbroker",
     packages=setuptools.find_packages(),
     license='Apache License 2.0',
     install_requires=['sounddevice', 'soundfile', 'requests'],
     classifiers=(
         "Programming Language :: Python :: 3",
-        "Operating System :: Linux",
+        "License :: OSI Approved :: Apache Software License"
     ),
 )

@@ -1,9 +1,9 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: ttsbroker
-Version: 0.0.1
+Version: 0.0.2
 Summary: Simple TTS (Text-To-Speech) broker for Python
 Home-page: https://github.com/alttch/ttsbroker
-Author: Altertech Group, https://www.altertech.com/
+Author: Altertech Group
 Author-email: pr@altertech.com
 License: Apache License 2.0
 Description: # pyttsbroker
@@ -42,4 +42,5 @@ Description: # pyttsbroker
         
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
-Classifier: Operating System :: Linux
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
