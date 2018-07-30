@@ -1,12 +1,13 @@
+__version__ = "0.0.5"
+
 import setuptools
-import ttsbroker.engine
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="ttsbroker",
-    version=ttsbroker.engine.__version__,
+    version=__version__,
     author='Altertech Group',
     author_email="pr@altertech.com",
     description="Simple TTS (Text-To-Speech) broker for Python",
@@ -15,7 +16,7 @@ setuptools.setup(
     url="https://github.com/alttch/ttsbroker",
     packages=setuptools.find_packages(),
     license='Apache License 2.0',
-    setup_requires=['sounddevice', 'soundfile', 'requests'],
+    install_requires=['sounddevice', 'soundfile', 'requests'],
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License"
