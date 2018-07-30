@@ -15,7 +15,7 @@ setuptools.setup(
     url="https://github.com/alttch/ttsbroker",
     packages=setuptools.find_packages(),
     license='Apache License 2.0',
-    install_requires=['sounddevice', 'soundfile', 'requests'],
+    setup_requires=['sounddevice', 'soundfile', 'requests'],
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License"
