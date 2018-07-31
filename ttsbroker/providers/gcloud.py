@@ -2,15 +2,7 @@ __author__ = "Altertech Group, https://www.altertech.com/"
 __copyright__ = "Copyright (C) 2018 Altertech Group"
 __license__ = "Apache License 2.0"
 __version__ = "0.0.1"
-
-import requests
-import base64
-import soundfile
-import io
-import time
-import oauth2client.service_account as oa2s
-
-"""
+__doc__ = """
 TTS provider for Google Cloud TTS
 
 Key: JSON service account key
@@ -21,8 +13,14 @@ Options:
     lang: language (default: en-US)
     voice: tts voice (default: en-US-Wavenet-A)
 """
-
 __id__ = 'gcloud'
+
+import requests
+import base64
+import soundfile
+import io
+import time
+import oauth2client.service_account as oa2s
 
 
 class TTSProvider(object):

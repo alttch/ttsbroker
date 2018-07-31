@@ -1,7 +1,7 @@
 __author__ = "Altertech Group, https://www.altertech.com/"
 __copyright__ = "Copyright (C) 2018 Altertech Group"
 __license__ = "Apache License 2.0"
-__version__ = "0.0.5"
+__version__ = "0.0.7"
 
 import importlib
 import os
@@ -38,8 +38,8 @@ class Engine(object):
         self.cache_dir = kwargs.get('cache_dir')
         self.cache_format = kwargs.get('cache_format', 'wav')
         self.gain = kwargs.get('gain', 0)
+        self.device = kwargs.get('device')
         if 'provider' in kwargs: self.set_provider(kwargs['provider'])
-        if 'device' in kwargs: self.set_device(kwargs['device'])
 
     def set_provider(self, provider):
         """Set TTS provider
@@ -67,23 +67,6 @@ class Engine(object):
             self._log_error('unable to init TTS provider, module %s' % provider)
             return False
         self._log_debug('provider set: %s' % provider)
-        return True
-
-    def set_device(self, device):
-        """Set playback device for sounddevice mod
-
-        Args:
-            device: playback device (list: python3 -m sounddevice)
-
-        Returns:
-            bool: True if successful, False otherwise
-
-        Raises:
-            ModuleNotFoundError: tts provider module not found
-            Exception: other errors
-        """
-        sounddevice.default.device = device
-        self._log_debug('playback device set: %s' % device)
         return True
 
     def set_key(self, key, preload=True):
@@ -185,7 +168,11 @@ class Engine(object):
             soundfile.write('%s/%s' % (self.cache_dir, datafile), data, rate)
         if not kwargs.get('generate_only'):
             if gain: data = data * self._gain_multiplier(gain)
-            sounddevice.play(data, rate, blocking=kwargs.get('wait', True))
+            sounddevice.play(
+                data,
+                rate,
+                blocking=kwargs.get('wait', True),
+                device=self.device)
         return True
 
     # internal functions

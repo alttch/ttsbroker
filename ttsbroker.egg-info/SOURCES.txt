@@ -10,3 +10,4 @@ ttsbroker.egg-info/top_level.txt
 ttsbroker/providers/__init__.py
 ttsbroker/providers/gcloud.py
 ttsbroker/providers/polly.py
+ttsbroker/providers/watson.py

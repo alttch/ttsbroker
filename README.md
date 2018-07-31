@@ -9,9 +9,11 @@ playing audio files generated with TTS engine
 The module contains providers for:
 
  * gcloud: Google Cloud TTS (requires cloud service account key), requires
-   oauth2client module
+   oauth2client python module
 
- * polly: Amazon Polly (requires AWS API keys), requires boto3 module
+ * polly: Amazon Polly (requires AWS API keys), requires boto3 python module
+
+ * watson: IBM Watson (requires Watson service credentials)
  
 Usage example:
  

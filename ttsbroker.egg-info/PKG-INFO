@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: ttsbroker
-Version: 0.0.5
+Version: 0.0.6
 Summary: Simple TTS (Text-To-Speech) broker for Python
 Home-page: https://github.com/alttch/ttsbroker
 Author: Altertech Group
