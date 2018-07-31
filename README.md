@@ -3,8 +3,8 @@ Simple TTS (Text-To-Speech) broker for Python
 
 License: Apache License 2.0
 
-Warning: Refer to TTS provider license for caching, storing, redistributing and
-playing audio files generated with TTS engine
+Warning: Refer to TTS provider license about caching, storing, redistributing
+and playing rights for the audio files generated with TTS engine.
 
 The module contains providers for:
 
