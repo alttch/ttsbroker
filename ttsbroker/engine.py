@@ -111,6 +111,7 @@ class Engine(object):
             store_cache: set False to skip saving a data in the local cache
             cache: set both use_cache and store_cache
             generate_only: set True to skip playback
+            wait: block thread and wait until playback finish
 
         Returns:
             bool: True if successful, False otherwise
