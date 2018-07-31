@@ -1,4 +1,4 @@
-__version__ = "0.0.8"
+__version__ = "0.1.0"
 
 import setuptools
 
@@ -19,6 +19,7 @@ setuptools.setup(
     install_requires=['sounddevice', 'soundfile', 'requests'],
     classifiers=(
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache Software License"
+        "License :: OSI Approved :: Apache Software License",
+        "Topic :: Multimedia :: Sound/Audio :: Speech",
     ),
 )

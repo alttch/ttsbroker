@@ -1,7 +1,7 @@
 __author__ = "Altertech Group, https://www.altertech.com/"
 __copyright__ = "Copyright (C) 2018 Altertech Group"
 __license__ = "Apache License 2.0"
-__version__ = "0.0.7"
+__version__ = "0.1.0"
 
 import importlib
 import os
@@ -148,7 +148,9 @@ class Engine(object):
                 try:
                     self._log_debug('using cached file for %s' % datahash)
                     data, rate = soundfile.read(fname)
-                    if data is None or not rate: raise
+                    if data is None or not rate:
+                        raise Exception(
+                            'invalid data in cache, file: %s' % fname)
                     from_cache = True
                 except:
                     self._log_error('broken audio file: %s' % fname)

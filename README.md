@@ -18,9 +18,9 @@ The module contains providers for:
 Usage example:
  
 ```python
-from ttsbroker import TTSEngine as TE
+from ttsbroker import TTSEngine as TTSE
 
-e = TE( 
+e = TTSE(
     cache_dir='/data/cache/gcloud',
     cache_format='ogg',
     device=0,
