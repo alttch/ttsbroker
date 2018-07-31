@@ -3,7 +3,6 @@ __copyright__ = "Copyright (C) 2018 Altertech Group"
 __license__ = "Apache License 2.0"
 __version__ = "0.0.1"
 
-import importlib
 import requests
 import base64
 import soundfile
