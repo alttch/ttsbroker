@@ -180,14 +180,17 @@ class Engine(object):
 
     # internal functions
 
-    def _log_debug(self, msg):
+    @staticmethod
+    def _log_debug(msg):
         logging.debug('ttsbroker: %s' % msg)
 
-    def _log_error(self, msg, raise_exception=True):
+    @staticmethod
+    def _log_error(msg, raise_exception=True):
         logging.error('ttsbroker: %s' % msg)
         if raise_exception: raise Exception(msg)
 
-    def _gain_multiplier(self, gain):
+    @staticmethod
+    def _gain_multiplier(gain):
         if not gain:
             g = 1.0
         elif gain > 0:
