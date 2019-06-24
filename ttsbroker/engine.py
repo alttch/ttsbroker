@@ -1,14 +1,13 @@
 __author__ = "Altertech Group, https://www.altertech.com/"
 __copyright__ = "Copyright (C) 2018 Altertech Group"
 __license__ = "Apache License 2.0"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 import importlib
 import os
 import json
 import logging
 
-import sounddevice
 import soundfile
 
 from hashlib import sha256
@@ -26,6 +25,7 @@ class Engine(object):
             gain: default gain
             provider: provider module
             provider_options: default provider options (voice, lang etc.)
+            cmd: default external playback command
 
         Raises:
             ModuleNotFoundError: tts provider module not found
@@ -33,6 +33,7 @@ class Engine(object):
         """
         self.provider = None
         self.key = None
+        self.cmd = kwargs.get('cmd')
         self.provider_options = kwargs.get('provider_options', {})
         self.storage_dir = kwargs.get('storage_dir')
         self.cache_dir = kwargs.get('cache_dir')
@@ -112,12 +113,19 @@ class Engine(object):
             cache: set both use_cache and store_cache
             generate_only: set True to skip playback
             wait: block thread and wait until playback finish
+            cmd: external playback command
 
         Returns:
             bool: True if successful, False otherwise
 
         Raises:
             Exception: a lot of
+
+        If external playback command is not specified, "sounddevice" python
+        module must be present in system.
+
+        Params for external command: %f - file, e.g. "play %f", if no %f is
+        specified, file name is automatically added to the end.
         """
         if not self.provider:
             self._log_error('no tts provider set')
@@ -171,11 +179,33 @@ class Engine(object):
             soundfile.write('%s/%s' % (self.cache_dir, datafile), data, rate)
         if not kwargs.get('generate_only'):
             if gain: data = data * self._gain_multiplier(gain)
-            sounddevice.play(
-                data,
-                rate,
-                blocking=kwargs.get('wait', True),
-                device=self.device)
+            cmd = kwargs.get('cmd') if 'cmd' in kwargs else self.cmd
+            wait = kwargs.get('wait', True)
+            if cmd:
+                import tempfile
+                f = tempfile.mktemp() + '.wav'
+                soundfile.write(f, data, rate)
+                try:
+                    if cmd.find('%f') == -1:
+                        cmd += ' ' + f
+                    else:
+                        cmd = cmd.replace('%f', f)
+                    cmd = '(' + cmd
+                    if not wait:
+                        cmd += ' ; rm -f {}'.format(f)
+                    cmd += ') > /dev/null 2>&1'
+                    if not wait:
+                        cmd += ' &'
+                    code = os.system(cmd)
+                    if code:
+                        raise Exception(
+                            'External playback command failed, code {}'.format(
+                                code))
+                finally:
+                    if wait: os.unlink(f)
+            else:
+                import sounddevice
+                sounddevice.play(data, rate, blocking=wait, device=self.device)
         return True
 
     # internal functions
