@@ -33,7 +33,7 @@ class TTSProvider(object):
         self.access_token_expires = 0
 
     def generate_audio(self, text, key, **kwargs):
-        if not self.access_token or self.access_token_expires < time.time():
+        if not self.access_token or self.access_token_expires < time.perf_counter():
             # obtain new access token
             scope = 'https://www.googleapis.com/auth/cloud-platform'
             c = oa2s.ServiceAccountCredentials.from_json_keyfile_dict(
@@ -41,7 +41,7 @@ class TTSProvider(object):
             token = c.get_access_token()
             self.access_token = token.access_token
             # set cached token expiration, substract 10 seconds to keep it safe
-            self.access_token_expires = time.time() + token.expires_in - 10
+            self.access_token_expires = time.perf_counter() + token.expires_in - 10
         req_headers = {"Authorization": "Bearer %s" % self.access_token}
         req_data = {
             'audioConfig': {
